@@ -51,7 +51,6 @@ def main():
             choice = int(input("Enter choice: "))
         except ValueError:
             continue
-
         try:
             if choice == 1:
                 print(blue + "Add Course" + c_reset)
@@ -117,8 +116,6 @@ def main():
                 print(red + "Invalid selection!" + c_reset)
         except Exception as e:
             print(red + "System Error:", e, c_reset)
-
         input(cyan + "\nPress Enter to return to menu..." + c_reset)
-
 if __name__ == "__main__":
     main()
