@@ -5,6 +5,7 @@ cyan   = "\033[96m"
 red    = "\033[91m"
 green  = "\033[92m"
 c_reset = "\033[0m"
+from Part_1 import Student, Input, students
 def showMenu(selected):
     os.system("cls")
     options = [
@@ -16,7 +17,7 @@ def showMenu(selected):
         "Save Database",
         "Load Database",
         "Export Course CSV",
-        "Edit name of student",
+        "Edit in the student",
         "Print Student Report",
         "Delete Student",
         "Delete Course",
@@ -57,7 +58,9 @@ def main():
                 addCourse(courses)
             elif choice == 2:
                 print(blue + "Add Student" + c_reset)
-                addStudent(students, courses)
+                info = Input()
+                s = Student(*info)
+                students.append(s)
             elif choice == 3:
                 print(blue + "Register Grade" + c_reset)
                 recordGrade(courses, students)
@@ -85,14 +88,23 @@ def main():
                     else:
                         print(red + "Course not found!" + c_reset)
             elif choice == 9:
-                print(blue + "Edit name of student" + c_reset)
-                Edit_Student_name(students)
+                print(blue + "Edit in student" + c_reset)
+                if students:
+                    students[-1].update_student()
+                else:
+                    print(red + "No students available!" + c_reset)
             elif choice == 10:
                 print(blue + "Print Student Report" + c_reset)
-                studentReport(students, courses)
+                if students:
+                    students[-1].display()
+                else:
+                    print(red + "No students available!" + c_reset)
             elif choice == 11:
                 print(blue + "Delete Student" + c_reset)
-                deleteStudent(students)
+                if students:
+                    students[-1].del_update()
+                else:
+                    print(red + "No students available!" + c_reset)
             elif choice == 12:
                 print(blue + "Delete Course" + c_reset)
                 deleteCourse(courses)
