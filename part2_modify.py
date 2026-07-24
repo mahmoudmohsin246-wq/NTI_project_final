@@ -55,5 +55,17 @@ def add_grade_course():
             course.add_grade()
             return
     print("course not found")
+def average_course():
+    id_course = input("Enter ID of course: ")
+    for course in courses:
+        if course.id_course == id_course:
+            if course.students:
+                total = sum(course.students.values())
+                avg = total / len(course.students)
+                print(f"Average grade for {course.name_course} is {avg:.2f}")
+            else:
+                print("No grades recorded yet for this course.")
+        return
+    print("Course not found")
 add_new_course()
 add_grade_course()
